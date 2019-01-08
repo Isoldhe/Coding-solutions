@@ -1,0 +1,31 @@
+<div class="postContainer postContent bg-light" style="width: 80%;" *ngIf="solution">
+  <form class="solutionForm" [formGroup]="editSolution" (ngSubmit)="saveSolution()">
+    <div class="input-group">
+      <label class="text-dark label">Title</label>
+      <input formControlName="title" type="text" class="form-control form-control-lg" placeholder="Title"
+              [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+      <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+        <div *ngIf="f.title.errors.required">Title is required</div>
+        <div *ngIf="f.title.errors.maxlength">Title has a max length of 60 characters</div>
+      </div>
+    </div>
+    <div class="input-group">
+      <label for="textArea" class="text-dark label">Description</label>
+      <textarea id="textArea" formControlName="description" class="form-control" rows="10" aria-label="With textarea"
+                placeholder="Description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+      <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+        <div *ngIf="f.description.errors.required">Description is required</div>
+      </div>
+    </div>
+    <div class="input-group">
+      <label for="textArea" class="text-dark label">Solution</label>
+      <textarea id="textArea" formControlName="solution" class="form-control" rows="10" aria-label="With textarea"
+                placeholder="Solution" [ngClass]="{ 'is-invalid': submitted && f.solution.errors }"></textarea>
+      <div *ngIf="submitted && f.solution.errors" class="invalid-feedback">
+        <div *ngIf="f.solution.errors.required">Solution is required</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-outline-success">Save solution</button>
+
+  </form>
+</div>

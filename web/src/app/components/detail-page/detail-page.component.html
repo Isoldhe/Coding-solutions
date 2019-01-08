@@ -1,0 +1,13 @@
+<div *ngIf="solution" class="postContainer container-fluid ">
+  <div class="postContainer postContent card" style="width: 60%;">
+    <div class="card-body bg-light">
+      <h3 class="card-title text-dark">{{solution.title}}</h3>
+      <!-- <h6 class="subtitle">The problem</h6> -->
+      <p class="description card-text text-dark">{{solution.description}}</p>
+      <h5 class="subtitle">Solution</h5>
+      <p class="solution card-text text-dark">{{solution.solution}}</p>
+      <button (click)="openDeleteSolutionDialog(solution.id)" type="button" class="deleteBtn btn btn-outline-danger">Delete</button>
+      <button routerLink="/edit-solution/{{solution.id}}" type="button" class="btn btn-outline-warning">Edit</button>
+    </div>
+  </div>
+</div>

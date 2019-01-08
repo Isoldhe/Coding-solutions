@@ -1,0 +1,12 @@
+<div class="postContainer container-fluid ">
+  <div *ngFor="let solution of allSolutions" class="card postContent" style="width: 60%;">
+    <div class="card-body bg-light">
+      <a routerLink="/solution-detail/{{solution.id}}"><h5 class="card-title text-dark">{{solution.title}}</h5></a>
+      <p class="card-text">{{solution.description}}</p>
+      <!-- <p class="card-text">{{solution.solution}}</p> -->
+      <p>Tags</p>
+      <button (click)="openDeleteSolutionDialog(solution.id)" type="button" class="deleteBtn btn btn-outline-danger">Delete</button>
+      <button routerLink="/edit-solution/{{solution.id}}" type="button" class="btn btn-outline-warning">Edit</button>
+    </div>
+  </div>
+</div>
