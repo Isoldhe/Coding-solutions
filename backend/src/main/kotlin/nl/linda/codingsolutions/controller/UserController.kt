@@ -7,6 +7,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
+import nl.linda.codingsolutions.model.Token
 import java.io.IOException
 import java.security.GeneralSecurityException
 import java.util.*
@@ -23,22 +24,12 @@ class UserController {
 
     @ResponseBody
     @RequestMapping(value = ["/google-sign-in"], method = [RequestMethod.POST], produces=["application/json"], consumes=["application/json"])
-    fun googleSignIn(@RequestBody idToken: String) {
-        println("idToken = $idToken")
-
-        /** Why this hack?
-            Angular threw an error when I just send the token as a string. I had to send it as a json.
-            But then in Spring the json gets converted to a string, like this:  {"token":"...."}
-            So in order for the GoogleIdTokenVerifier to work, I had to manually remove the first 10 and last character from that string,
-            so only the actual idToken remained
-         */
-        val newIdToken: String = idToken.substring(10, idToken.length - 1)
-
+    fun googleSignIn(@RequestBody token: Token) {
         val googleToken: GoogleIdToken
 
         try {
-            googleToken = webVerifier.verify(newIdToken)
-            if (idToken != null) {
+            googleToken = webVerifier.verify(token.idToken)
+            if (!token.idToken.isEmpty()) {
                 val payload: Payload = googleToken.payload
                 // print user identifier
                 val userId: String = payload.subject

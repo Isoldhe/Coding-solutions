@@ -4,6 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 
 import { User } from '../../model/user';
+import { Token } from '../../model/token';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,10 @@ export class SignInService {
 
   constructor(private http: HttpClient) { }
 
-  signIn(idToken: string) {
-    console.log("idToken= " + idToken);
+  signIn(token: Token) {
+    console.log("idToken= " + token.idToken);
     // Angular makes me send a json, instead of a string, so I had to correct that in the backend (see Spring's UserController)
-    return this.http.post('http://localhost:8080/google-sign-in', {token: idToken}).pipe(
+    return this.http.post('http://localhost:8080/google-sign-in', token).pipe(
       catchError(this.errorHandler));
   }
 
