@@ -5,8 +5,6 @@ import nl.linda.codingsolutions.service.SolutionServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
-
-
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
 class SolutionController(@Autowired val solutionService: SolutionServiceImpl) {
@@ -24,7 +22,7 @@ class SolutionController(@Autowired val solutionService: SolutionServiceImpl) {
 
     @ResponseBody
     @GetMapping(value = ["/test"])
-    fun testCall() : String {
+    fun testCall(@RequestBody idToken: Any) : String {
         println("Doing the testCall()")
         return "Hello from the backend"
     }
@@ -58,22 +56,9 @@ class SolutionController(@Autowired val solutionService: SolutionServiceImpl) {
         solutionService.save(solution)
     }
 
-//    @ResponseBody
-//    @PutMapping(value = "/post/{id}")
-//    public int updatePost(@PathVariable("id")  int id, @RequestBody Post post) {
-//        Post postOld = postService.findById(id).get();
-//        postOld.setTitle(post.getTitle());
-//        postOld.setSmiley(post.getSmiley());
-//        postOld.setDate(post.getDate());
-//        postOld.setEntry(post.getEntry());
-//        System.out.println(postOld.getEntry());
-//        return postService.save(postOld).getId();
-//    }
-
     @ResponseBody
-    @DeleteMapping(value = ["solution/{id}"])
+    @DeleteMapping(value = ["/solution/{id}"])
     fun deleteSolution(@PathVariable id: Long) {
         solutionService.delete(id)
     }
-
 }

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { Subject } from 'rxjs/internal/Subject';
 
-import { Solution } from '../model/solution';
+import { Solution } from '../../model/solution';
 
 @Injectable({
   providedIn: 'root'

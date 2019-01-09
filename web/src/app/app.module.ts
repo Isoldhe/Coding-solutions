@@ -19,6 +19,10 @@ import { NewSolutionComponent } from './components/new-solution/new-solution.com
 import { EditSolutionComponent } from './components/edit-solution/edit-solution.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { getAuthServiceConfigs } from "./components/sign-in/sign-in-config";
+import { SocialLoginModule, AuthServiceConfig } from "angular-6-social-login";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +31,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     DeleteSolutionDialogComponent,
     NewSolutionComponent,
     EditSolutionComponent,
-    NavBarComponent
+    NavBarComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -35,13 +40,19 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     ReactiveFormsModule,
     MatDialogModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SocialLoginModule
   ],
   entryComponents: [
     DeleteSolutionDialogComponent
   ],
   providers: [
-    httpInterceptorProviders
+    httpInterceptorProviders,
+    // SocialLoginModule.initialize(getAuthServiceConfigs)
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
   ],
   bootstrap: [AppComponent]
 })
