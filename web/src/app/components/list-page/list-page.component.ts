@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { SolutionService } from '../../shared';
-import { Solution } from '../../model/solution';
+import { SolutionService, NavBarService, Solution } from '../../shared';
 import { DeleteSolutionDialogComponent } from '../delete-solution-dialog/delete-solution-dialog.component';
 
 @Component({
@@ -18,13 +17,15 @@ export class ListPageComponent implements OnInit {
   deleteSolution: boolean = false;
 
   constructor(private solutionService: SolutionService,
-    public dialog: MatDialog) {
+              public navBar: NavBarService,
+              public dialog: MatDialog) {
     this.solutionService.eventCallback$.subscribe(data => {
       this.callbackFunction();
     });
   }
 
   ngOnInit() {
+    this.navBar.show()
     this.solutionService.getAllSolutions()
   }
 

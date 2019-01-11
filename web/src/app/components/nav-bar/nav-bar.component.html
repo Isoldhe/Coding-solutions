@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="navBar.visible">
   <a class="navbar-brand" href="#">CS</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -10,7 +10,7 @@
         <a class="btn btn-outline-success" routerLink="/new-solution" role="button">Add new solution</a>
       </li>
       <li>
-        <app-sign-in class="sign-in"></app-sign-in>
+        <a class="nav-link" routerLink="/sign-in" role="button">Sign out</a>
       </li>
     </ul>
   </div>

@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { Subject } from 'rxjs/internal/Subject';
 
-import { Solution } from '../../model/solution';
+import { Token, Solution } from 'src/app/shared';
 
 @Injectable({
   providedIn: 'root'
